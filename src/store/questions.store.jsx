@@ -1,4 +1,13 @@
 import { create } from "zustand";
+import { javascriptQuestionsData } from "../data/javascriptQuestionsData";
+import { pythonQuestionsData } from "../data/pythonQuestionsData";
+import { javaQuestionsData } from "../data/javaQuestionsData";
+
+const questionsData = {
+  "javascript" : javascriptQuestionsData,
+  "python" : pythonQuestionsData,
+  "java" : javaQuestionsData,
+}
 
 export const useQuestionsStore = create((set, get) => ({
     currentLanguage : {},
@@ -26,10 +35,7 @@ export const useQuestionsStore = create((set, get) => ({
 
       const lowerLanguage = language.toLowerCase()
 
-      const res = await fetch(`http://localhost:5173/${lowerLanguage}QuestionsData.json`)
-      const json = await res.json()
-
-      const questions = json.sort(() => Math.random() - 0.5).slice(0, limitQuestions)
+      const questions = questionsData[lowerLanguage].sort(() => Math.random() - 0.5).slice(0, limitQuestions)
       
       set({ questions })
     },

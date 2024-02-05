@@ -1,4 +1,4 @@
-[
+export const javaQuestionsData = [
   {
     "id": 1,
     "question": "¿Cuál es la salida de este código?",
